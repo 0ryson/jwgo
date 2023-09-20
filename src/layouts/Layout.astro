@@ -31,21 +31,23 @@ const { title, lang = 'es', description } = Astro.props
     <GlobalStyles />
     <ViewTransitions />
   </head>
-  <body class="font-base text-neutral-800">
+  <body class="font-base text-slate-800 font-normal">
     <div class="w-full h-screen flex bg-white">
       <Sidebar client:load>
         <Brand />
         <Menu />
         <Copyright slot="copyright" />
       </Sidebar>
-      <div class="w-full flex flex-col justify-between">
-        <div class="px-8 py-6 bg-white">
+      <div class="w-full flex flex-col justify-between overflow-x-hidden">
+        <div class="px-8 pt-6 lg:pb-2 bg-white">
           <Header />
         </div>
         <div
-          class="flex flex-col justify-between overflow-y-auto w-full h-full mx-auto px-8 py-6 max-w-screen-xl"
+          class="flex flex-col justify-between overflow-y-auto box-content w-full h-full mx-auto px-8 py-6 max-w-screen-xl"
         >
-          <slot />
+          <div class="pr-12">
+            <slot />
+          </div>
           <div class="mt-10 px-8 py-6">
             <Footer />
           </div>

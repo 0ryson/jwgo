@@ -18,7 +18,7 @@ const Sidebar = ({ children, copyright }: Iprops) => {
     <div
       className={`${
         !openMenu && 'hidden'
-      } absolute z-10 lg:static lg:block h-full w-full min-w-min lg:max-w-[20%] border-r border-slate-200`}
+      } absolute z-10 lg:static lg:block h-full w-full min-w-min lg:max-w-[20%]  border-slate-200`}
     >
       <div
         onClick={toggle}

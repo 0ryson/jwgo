@@ -1,7 +1,26 @@
 ---
+import CardPage from '../components/molecules/CardPage.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="JWGo!" description="Bienvenido a JWGo!">
-  <main>Inicio</main>
+  <main class="grid md:grid-cols-2 gap-6">
+    <CardPage
+      title="Tablero digital"
+      description="Todos los últimos anuncios y documentos de la congregación"
+      page="board"
+    />
+
+    <CardPage
+      title="Programa de reuniones"
+      description="Asignaciones y participaciones de las próximas reuniones"
+      page="meetings"
+    />
+
+    <CardPage
+      title="Territorios"
+      description="Listado y gestión de todos los territorios de la congregación"
+      page="territories"
+    />
+  </main>
 </Layout>
