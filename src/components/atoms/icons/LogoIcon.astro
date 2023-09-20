@@ -1,12 +1,21 @@
+---
+const {
+  size = 30,
+  strokeWidth = 1.5,
+  strokeColor = '#333',
+  fillColor = 'none',
+} = Astro.props
+---
+
 <svg
   xmlns="http://www.w3.org/2000/svg"
   class="icon icon-tabler icon-tabler-wallpaper"
-  width="44"
-  height="44"
+  width=`${size}`
+  height=`${size}`
   viewBox="0 0 24 24"
-  stroke-width="1.5"
-  stroke="#FFF"
-  fill="none"
+  stroke-width=`${strokeWidth}`
+  stroke=`${strokeColor}`
+  fill=`${fillColor}`
   stroke-linecap="round"
   stroke-linejoin="round"
 >
