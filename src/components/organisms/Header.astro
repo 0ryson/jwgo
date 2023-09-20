@@ -1,3 +1,20 @@
+---
+import CloseToLeftIcon from '../atoms/icons/CloseToLeftIcon.astro'
+import MenuIcon from '../atoms/icons/MenuIcon.astro'
+import Notifications from '../molecules/Notifications.astro'
+import ToggleMenu from '../molecules/ToggleMenu.tsx'
+---
+
 <header class="flex justify-between">
-  <slot />
+  <ToggleMenu client:load>
+    <CloseToLeftIcon slot="close" />
+    <MenuIcon slot="open" />
+  </ToggleMenu>
+  <div
+    class="flex flex-col -mt-2 lg:-mt-0 px-6 lg:px-0 text-center lg:text-left"
+  >
+    <span class="font-medium">David Merino</span>
+    <span class="text-xs">Armilla Norte</span>
+  </div>
+  <Notifications />
 </header>

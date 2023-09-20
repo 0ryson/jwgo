@@ -3,15 +3,12 @@ import GlobalStyles from '../styles/GlobalStyles.astro'
 import Brand from '../components/molecules/Brand.astro'
 import Header from '../components/organisms/Header.astro'
 import Menu from '../components/molecules/Menu.astro'
-import ToggleMenu from '../components/molecules/ToggleMenu.tsx'
-import Notifications from '../components/molecules/Notifications.astro'
 import Footer from '../components/organisms/Footer.astro'
-import Copyright from '../components/molecules/Copyright.astro'
 import Sidebar from '../components/organisms/Sidebar.tsx'
 import Tabbar from '../components/organisms/Tabbar.astro'
 import Shortcuts from '../components/molecules/Shortcuts.astro'
-import CloseToLeftIcon from '../components/atoms/icons/CloseToLeftIcon.astro'
-import MenuIcon from '../components/atoms/icons/MenuIcon.astro'
+import { ViewTransitions } from 'astro:transitions'
+import Copyright from '../components/molecules/Copyright.astro'
 
 interface Props {
   title: string
@@ -20,8 +17,6 @@ interface Props {
 }
 
 const { title, lang = 'es', description } = Astro.props
-
-let menuOpened = false
 ---
 
 <!doctype html>
@@ -34,32 +29,25 @@ let menuOpened = false
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <GlobalStyles />
+    <ViewTransitions />
   </head>
   <body class="font-base text-neutral-800">
     <div class="w-full h-screen flex bg-white">
       <Sidebar client:load>
         <Brand />
         <Menu />
+        <Copyright slot="copyright" />
       </Sidebar>
       <div class="w-full flex flex-col justify-between">
         <div class="px-8 py-6 bg-white">
-          <Header>
-            <ToggleMenu client:load>
-              <CloseToLeftIcon size={25} slot="close" />
-              <MenuIcon size={25} slot="open" />
-            </ToggleMenu>
-            <div>David Merino | Armilla Norte</div>
-            <Notifications />
-          </Header>
+          <Header />
         </div>
         <div
           class="flex flex-col justify-between overflow-y-auto w-full h-full mx-auto px-8 py-6 max-w-screen-xl"
         >
           <slot />
           <div class="mt-10 px-8 py-6">
-            <Footer>
-              <Copyright />
-            </Footer>
+            <Footer />
           </div>
         </div>
       </div>

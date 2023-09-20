@@ -1,22 +1,20 @@
 import { useState } from 'react'
 
 interface Props {
-  close: JSX.Element
-  open: JSX.Element
+  close?: React.ReactElement
+  open?: React.ReactElement
 }
 
 const ToggleMenu: React.FC<Props> = ({ close, open }) => {
-  const [openMenu, setOpenMenu] = useState(true)
+  const [openMenu, setOpenMenu] = useState(false)
 
   const toggle = () => {
     openMenu ? setOpenMenu(false) : setOpenMenu(true)
   }
 
   return (
-    <div>
-      <div className="lg:invisible" onClick={toggle}>
-        {openMenu ? close : open}
-      </div>
+    <div className="lg:hidden">
+      <div onClick={toggle}>{openMenu ? close : open}</div>
     </div>
   )
 }

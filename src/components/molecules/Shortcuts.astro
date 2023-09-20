@@ -30,12 +30,8 @@ const routes: Routes[] = [
               class="flex flex-col lg:flex-row justify-center lg:justify-start items-center"
             >
               <span class="pb-1 lg:pr-4 lg:pb-0">
-                {route.url === 'new-territory' && (
-                  <NewTerritoryIcon size={25} />
-                )}
-                {route.url === 'return-territory' && (
-                  <ReturnTerritoryIcon size={25} />
-                )}
+                {route.url === 'new-territory' && <NewTerritoryIcon />}
+                {route.url === 'return-territory' && <ReturnTerritoryIcon />}
               </span>
               <span class="font-medium text-sm lg:text-base">{route.name}</span>
             </a>

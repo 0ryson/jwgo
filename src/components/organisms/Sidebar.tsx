@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import Copyright from '../molecules/Copyright.astro'
 
 type Iprops = {
   children?: React.ReactNode
+  copyright?: React.ReactElement
 }
 
-const Sidebar = ({ children }: Iprops) => {
+const Sidebar = ({ children, copyright }: Iprops) => {
   const [openMenu, setOpenMenu] = useState(false)
 
   const toggle = () => {
@@ -24,8 +26,9 @@ const Sidebar = ({ children }: Iprops) => {
           !openMenu && 'hidden'
         } lg:hidden z-10 absolute top-0 right-0 bottom-0 left-0 w-full h-full bg-slate-900 opacity-50`}
       ></div>
-      <div className="z-20 px-8 py-6 relative w-min h-full break-words bg-white">
-        {children}
+      <div className="flex flex-col z-20 px-8 py-6 relative w-2/3 sm:w-1/3 lg:w-full h-full break-words bg-white">
+        <div className="flex-grow">{children}</div>
+        {copyright}
       </div>
     </div>
   )
