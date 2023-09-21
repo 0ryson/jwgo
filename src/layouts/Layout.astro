@@ -1,14 +1,18 @@
 ---
+import { ViewTransitions } from 'astro:transitions'
 import GlobalStyles from '../styles/GlobalStyles.astro'
 import Brand from '../components/molecules/Brand.astro'
 import Header from '../components/organisms/Header.astro'
-import Menu from '../components/molecules/Menu.astro'
+import Menu from '../components/molecules/Menu'
 import Footer from '../components/organisms/Footer.astro'
 import Sidebar from '../components/organisms/Sidebar.tsx'
 import Tabbar from '../components/organisms/Tabbar.astro'
 import Shortcuts from '../components/molecules/Shortcuts.astro'
-import { ViewTransitions } from 'astro:transitions'
 import Copyright from '../components/molecules/Copyright.astro'
+import BoardIcon from '../components/atoms/icons/BoardIcon.astro'
+import HomeIcon from '../components/atoms/icons/HomeIcon.astro'
+import MeetingsIcon from '../components/atoms/icons/MeetingsIcon.astro'
+import TerritoriesIcon from '../components/atoms/icons/TerritoriesIcon.astro'
 
 interface Props {
   title: string
@@ -35,7 +39,12 @@ const { title, lang = 'es', description } = Astro.props
     <div class="w-full h-screen flex bg-white">
       <Sidebar client:load>
         <Brand />
-        <Menu />
+        <Menu client:load>
+          <HomeIcon slot="HomeIcon" />
+          <BoardIcon slot="BoardIcon" />
+          <MeetingsIcon slot="MeetingsIcon" />
+          <TerritoriesIcon slot="TerritoriesIcon" />
+        </Menu>
         <Copyright slot="copyright" />
       </Sidebar>
       <div class="w-full flex flex-col justify-between overflow-x-hidden">

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useStore } from '@nanostores/react'
+import { isSidebarOpen } from '../../stores/sidebar'
 
 interface Props {
   close?: React.ReactElement
@@ -6,15 +7,13 @@ interface Props {
 }
 
 const ToggleMenu: React.FC<Props> = ({ close, open }) => {
-  const [openMenu, setOpenMenu] = useState(false)
-
-  const toggle = () => {
-    openMenu ? setOpenMenu(false) : setOpenMenu(true)
-  }
+  const $isSidebarOpen = useStore(isSidebarOpen)
 
   return (
     <div className="lg:hidden">
-      <div onClick={toggle}>{openMenu ? close : open}</div>
+      <div onClick={() => isSidebarOpen.set(!$isSidebarOpen)}>
+        {$isSidebarOpen ? close : open}
+      </div>
     </div>
   )
 }
