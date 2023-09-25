@@ -5,7 +5,12 @@ import tailwind from "@astrojs/tailwind";
 //import netlify from '@astrojs/netlify/functions'; <<< Instalar
 
 export default defineConfig({
-  integrations: [react(), tailwind()],
+  integrations: [
+    react({
+      //experimentalReactChildren: true,
+    }),
+    tailwind()
+  ],
   output: 'server',
   //adapter: netlify(), <<< Instalar y configurar
 });

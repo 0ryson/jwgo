@@ -48,18 +48,13 @@ const { title, lang = 'es', description } = Astro.props
         <Copyright slot="copyright" />
       </Sidebar>
       <div class="w-full flex flex-col justify-between overflow-x-hidden">
-        <div class="px-8 pt-6 lg:pb-2 bg-white">
+        <div class="px-8 py-6 bg-white">
           <Header />
         </div>
         <div
-          class="flex flex-col justify-between overflow-y-auto box-content w-full h-full mx-auto px-8 py-6 max-w-screen-xl"
+          class="flex flex-col justify-between overflow-y-auto w-full h-full mx-auto px-8 pb-20 max-w-screen-xl"
         >
-          <div class="pr-12">
-            <slot />
-          </div>
-          <div class="mt-10 px-8 py-6">
-            <Footer />
-          </div>
+          <slot />
         </div>
       </div>
       <Tabbar>

@@ -32,10 +32,10 @@ const routes: Routes[] = [
 ]
 
 const Menu = ({
-  HomeIcon,
-  BoardIcon,
-  MeetingsIcon,
-  TerritoriesIcon,
+  HomeIcon = <></>,
+  BoardIcon = <></>,
+  MeetingsIcon = <></>,
+  TerritoriesIcon = <></>,
 }: Props) => {
   return (
     <div className="py-4">
