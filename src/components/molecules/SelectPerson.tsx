@@ -1,6 +1,7 @@
 import type { Person } from '../../types/persons'
 import { useState, type HtmlHTMLAttributes } from 'react'
 import { persons } from '../../../mocks/persons'
+import { Mask } from './Mask'
 
 interface Props {
   selected?: Person
@@ -15,12 +16,7 @@ const SelectPerson = ({ selected, callback }: Props) => {
 
   return (
     <div className="w-48 min-w-fit">
-      <div
-        className={`${
-          !isDropdownOpened && 'hidden'
-        } z-20 fixed top-0 left-0 w-full h-full bg-slate-800 opacity-50`}
-        onClick={() => setIsDropdownOpened(false)}
-      />
+      <Mask show={isDropdownOpened} showCallback={setIsDropdownOpened} />
 
       <button
         onClick={() => setIsDropdownOpened(!isDropdownOpened)}
@@ -66,7 +62,7 @@ const SelectPerson = ({ selected, callback }: Props) => {
 
         <ul className="h-60 px-3 py-2 overflow-y-auto text-sm text-gray-700 text-left">
           {persons.map((person, key) => (
-            <li>
+            <li key={key}>
               <div
                 className="flex items-center pl-2 rounded hover:bg-gray-100"
                 onClick={(e) => {

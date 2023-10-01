@@ -1,15 +1,15 @@
 import type { WeekMeetings } from '../src/types/weekMeetings'
 
 const weekMeetingsData: WeekMeetings = {
-  id: '18240923',
-  start: '18-09-2023',
-  finish: '18-09-2023',
+  id: '0001',
+  start: '2023-09-25',
+  finish: '2023-10-01',
   meetings: [
     {
       id: '210923',
       type: 'midweek',
       day: 'miércoles',
-      date: '21-09-23',
+      date: '2023-09-21',
       hour: '19:30',
       firstSong: 100,
       firstPrayer: {
@@ -97,7 +97,7 @@ const weekMeetingsData: WeekMeetings = {
       id: '210923',
       type: 'weekend',
       day: 'sábado',
-      date: '24-09-23',
+      date: '2023-09-23',
       hour: '19:00',
       firstSong: 100,
       firstPrayer: {
