@@ -5,42 +5,51 @@ import { Mask } from './Mask'
 
 interface Props {
   selected?: Person
+  disabled?: boolean
   callback: (person: Person | undefined) => void
 }
 
-const SelectPerson = ({ selected, callback }: Props) => {
+const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
   const [isDropdownOpened, setIsDropdownOpened] = useState(false)
   const [personSelected, setPersonSelected] = useState<Person | undefined>(
     selected
   )
 
   return (
-    <div className="w-48 min-w-fit">
+    <div className="md:w-48 min-w-fit">
       <Mask show={isDropdownOpened} showCallback={setIsDropdownOpened} />
 
       <button
-        onClick={() => setIsDropdownOpened(!isDropdownOpened)}
+        onClick={() => !disabled && setIsDropdownOpened(!isDropdownOpened)}
         className={`${
-          !isDropdownOpened ? 'bg-slate-100' : 'bg-lime-300'
-        } w-full font-medium rounded-md text-sm px-2 py-1 justify-end flex items-center`}
+          !isDropdownOpened
+            ? !disabled
+              ? 'bg-slate-100'
+              : 'bg-white'
+            : 'bg-lime-300'
+        } ${
+          !disabled ? 'px-2' : 'cursor-default'
+        } w-full font-medium rounded-md text-sm py-1 justify-end flex items-center`}
         type="button"
       >
         <span className="h-5">{personSelected && personSelected.name}</span>
-        <svg
-          className={`${isDropdownOpened && 'rotate-180'} w-2.5 h-2.5 ml-2.5`}
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 10 6"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m1 1 4 4 4-4"
-          />
-        </svg>
+        {!disabled && (
+          <svg
+            className={`${isDropdownOpened && 'rotate-180'} w-2.5 h-2.5 ml-2.5`}
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 4 4 4-4"
+            />
+          </svg>
+        )}
       </button>
 
       <div
