@@ -40,19 +40,21 @@ const Menu = ({
   return (
     <div className="py-4">
       <ul>
-        {routes.map((route) => {
+        {routes.map((route, key) => {
           return (
-            <li className="mb-3 text-md font-medium">
+            <li className="mb-3 text-md font-medium" key={key}>
               <a
                 href={`/${route.url}`}
                 className="flex justify-start items-center"
                 onClick={() => isSidebarOpen.set(false)}
               >
                 <span className="pr-4">
-                  {route.url === '' && HomeIcon}
-                  {route.url === 'board' && BoardIcon}
-                  {route.url === 'meetings' && MeetingsIcon}
-                  {route.url === 'territories' && TerritoriesIcon}
+                  {HomeIcon && route.url === '' && HomeIcon}
+                  {BoardIcon && route.url === 'board' && BoardIcon}
+                  {MeetingsIcon && route.url === 'meetings' && MeetingsIcon}
+                  {TerritoriesIcon &&
+                    route.url === 'territories' &&
+                    TerritoriesIcon}
                 </span>
                 <span>{route.name}</span>
               </a>
