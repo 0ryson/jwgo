@@ -56,7 +56,7 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
       <div
         className={`${
           !isDropdownOpened && 'hidden'
-        } z-30 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl border border-slate-200 min-w-fit max-w-[90%] w-full md:w-2/3 lg:w-1/2 h-2/3 flex flex-col`}
+        } z-30 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl border border-slate-200 min-w-fit max-w-[90%] w-full md:w-2/3 lg:w-1/2 h-1/2 flex flex-col`}
       >
         <ul className="px-7 pt-3 pb-2 text-sm font-normal text-gray-500 border-b text-left">
           <li>
