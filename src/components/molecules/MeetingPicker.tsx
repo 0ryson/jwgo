@@ -31,7 +31,7 @@ const options = {
     prev: () => <LeftIcon />,
     next: () => <RightIcon />,
   },
-  datepickerClassNames: 'top-8 left-1/2 transform -translate-x-1/2 ',
+  datepickerClassNames: 'top-8 left-1/2 transform -translate-x-1/2',
   defaultDate: new Date(),
   language: 'es-ES', // TODO: Change to dynamic language
   inputDateFormatProp: {

@@ -11,6 +11,7 @@ interface Props {
 
 const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
   const [isDropdownOpened, setIsDropdownOpened] = useState(false)
+  const [personsState, setPersonsState] = useState(persons)
   const [personSelected, setPersonSelected] = useState<Person | undefined>(
     selected
   )
@@ -55,30 +56,30 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
       <div
         className={`${
           !isDropdownOpened && 'hidden'
-        } z-30 absolute mt-2 right-6 bg-white rounded-lg shadow-xl border border-slate-200 min-w-fit max-w-md w-full`}
+        } z-30 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl border border-slate-200 min-w-fit max-w-[90%] w-full md:w-2/3 lg:w-1/2 h-2/3 flex flex-col`}
       >
         <ul className="px-7 pt-3 pb-2 text-sm font-normal text-gray-500 border-b text-left">
           <li>
             <div className="flex items-center">
               <div className="w-full ml-5 rounded ">Nombre</div>
-              <div className="w-full ml-2 rounded ">Última vez</div>
-              {/* <div className="w-full ml-2 rounded ">
-                Otras
-              </div> */}
+              <div className="w-full ml-2 rounded ">Última vez asignado</div>
+              <div className="w-full ml-2 rounded ">Otras asignaciones</div>
             </div>
           </li>
         </ul>
 
-        <ul className="h-60 px-3 py-2 overflow-y-auto text-sm text-gray-700 text-left">
-          {persons.map((person, key) => (
+        <ul className="flex-grow px-3 py-2 overflow-y-auto text-sm text-gray-700 text-left">
+          {personsState.map((person, key) => (
             <li key={key}>
               <div
                 className="flex items-center pl-2 rounded hover:bg-gray-100"
                 onClick={(e) => {
                   const ele = e.target as HTMLInputElement
                   if (ele.localName === 'input') {
-                    setPersonSelected(ele.checked ? persons[key] : undefined)
-                    callback(ele.checked ? persons[key] : undefined)
+                    setPersonSelected(
+                      ele.checked ? personsState[key] : undefined
+                    )
+                    callback(ele.checked ? personsState[key] : undefined)
                   }
                 }}
               >
@@ -91,8 +92,11 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
                   <div className="w-full py-2 ml-4 text-sm font-medium text-gray-900 rounded">
                     {person.name}
                   </div>
-                  <div className="w-full py-2 ml-2 text-sm text-gray-900 rounded">
+                  <div className="w-full py-2 ml-2 text-sm text-gray-900 font-normal rounded">
                     Hace 2 días
+                  </div>
+                  <div className="w-full py-2 ml-2 text-sm text-gray-900 font-normal rounded">
+                    Hace 5 días
                   </div>
                 </label>
               </div>
@@ -121,9 +125,21 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
             </div>
             <input
               type="text"
-              id="input-group-search"
-              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+              className="block w-full p-2 pl-10 text-sm text-gray-900 font-normal border border-gray-300 rounded-lg bg-white focus:outline-lime-300"
               placeholder="Buscar"
+              onChange={(input) => {
+                const value = input.target.value.toLowerCase()
+
+                setPersonsState(
+                  persons.filter((person) => {
+                    const name = person.name.toLowerCase()
+
+                    return value.length < 3
+                      ? name.startsWith(value)
+                      : name.includes(value)
+                  })
+                )
+              }}
             />
           </div>
         </div>
