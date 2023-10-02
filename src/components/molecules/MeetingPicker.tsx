@@ -13,19 +13,19 @@ const options = {
   maxDate: new Date('2050-01-01'),
   minDate: new Date('2000-01-01'),
   theme: {
-    background: 'bg-gray-100 dark:bg-gray-100',
+    background: 'bg-slate-100 dark:bg-slate-100',
     todayBtn:
       'bg-lime-600 dark:bg-lime-600 text-lime-50 dark:text-lime-50 hover:bg-lime-500 dark:hover:bg-lime-500 active:ring-4 active:ring-lime-300 focus:ring-0',
     clearBtn: '',
     icons:
-      'bg-gray-100 dark:bg-gray-100 text-gray-600 dark:text-gray-600 hover:bg-gray-200 dark:hover:bg-gray-200 hover:text-gray-600 dark:hover:text-gray-600',
-    text: 'text-gray-600 dark:text-gray-600 font-normal dark:font-normal hover:bg-gray-200 dark:hover:bg-gray-200 hover:text-gray-600 dark:hover:text-gray-600',
+      'bg-slate-100 dark:bg-slate-100 text-slate-600 dark:text-slate-600 hover:bg-slate-200 dark:hover:bg-slate-200 hover:text-slate-600 dark:hover:text-slate-600',
+    text: 'text-slate-600 dark:text-slate-600 font-normal dark:font-normal hover:bg-slate-200 dark:hover:bg-slate-200 hover:text-slate-600 dark:hover:text-slate-600',
     disabledText:
-      'opacity-50 text-gray-500 dark:text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-200',
+      'opacity-50 text-slate-500 dark:text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-200',
     input: 'text-center',
     inputIcon: '',
     selected:
-      'bg-lime-600 dark:bg-lime-600 text-lime-50 dark:text-lime-50 hover:bg-lime-500 dark:hover:bg-lime-500  hover:text-lime-50 dark:hover:text-lime-50',
+      'bg-lime-600 dark:bg-lime-600 text-white dark:text-white hover:bg-lime-500 dark:hover:bg-lime-500  hover:text-lime-50 dark:hover:text-lime-50',
   },
   icons: {
     prev: () => <LeftIcon />,
