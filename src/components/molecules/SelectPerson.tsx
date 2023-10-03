@@ -2,22 +2,31 @@ import type { Person } from '../../types/persons'
 import { useState, useEffect, useMemo } from 'react'
 import { persons } from '../../../mocks/persons'
 import { Mask } from './Mask'
-import TopBottomIcon from '../atoms/icons/TopBottomIcon'
+import VerticalArrowIcon from '../atoms/icons/VerticalArrowIcon'
 
 interface Props {
   selected?: Person
+  participation?: string
   disabled?: boolean
   callback: (person: Person | undefined) => void
 }
 
-const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
+const SelectPerson = ({
+  selected,
+  participation, // Send to endpoint
+  disabled = false,
+  callback,
+}: Props) => {
   const [isDropdownOpened, setIsDropdownOpened] = useState(false)
   const [personSelected, setPersonSelected] = useState<Person | undefined>(
     selected
   )
 
-  const [personsState, setPersonsState] = useState(persons)
-  const [sortData, setSortData] = useState({ type: 'last', asc: false })
+  const personsWithExtraValues = persons.map((person) => {
+    return { ...person, hide: false }
+  })
+  const [personsState, setPersonsState] = useState(personsWithExtraValues)
+  const [sortData, setSortData] = useState({ type: 'priority', asc: false })
 
   useEffect(() => {
     if (sortData.type === 'name') {
@@ -33,8 +42,22 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
       )
     }
 
+    if (sortData.type === 'priority') {
+      const personPriority = personsState.map((person) => person.priority)
+      const personPriorityOrdered = personPriority.sort(
+        (a, b) => (sortData.asc ? b : a) - (sortData.asc ? a : b)
+      )
+
+      setPersonsState(
+        personPriorityOrdered.map(
+          (priority) =>
+            personsState.filter((person) => person.priority === priority)[0]
+        )
+      )
+    }
+
     if (sortData.type === 'last') {
-      const personLast = personsState.map((person) => person.last!)
+      const personLast = personsState.map((person) => person.last!.date)
       const personLastOrdered = personLast.sort(
         (a, b) =>
           Date.parse(sortData.asc ? b : a) - Date.parse(sortData.asc ? a : b)
@@ -42,13 +65,14 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
 
       setPersonsState(
         personLastOrdered.map(
-          (date) => personsState.filter((person) => person.last === date)[0]
+          (date) =>
+            personsState.filter((person) => person.last!.date === date)[0]
         )
       )
     }
 
     if (sortData.type === 'others') {
-      const personOthers = personsState.map((person) => person.others!)
+      const personOthers = personsState.map((person) => person.other!.date)
       const personOthersOrdered = personOthers.sort(
         (a, b) =>
           Date.parse(sortData.asc ? b : a) - Date.parse(sortData.asc ? a : b)
@@ -56,7 +80,8 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
 
       setPersonsState(
         personOthersOrdered.map(
-          (date) => personsState.filter((person) => person.others === date)[0]
+          (date) =>
+            personsState.filter((person) => person.other!.date === date)[0]
         )
       )
     }
@@ -99,27 +124,27 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
       >
         <span className="h-5">{personSelected && personSelected.name}</span>
         {!disabled && (
-          <TopBottomIcon direction={isDropdownOpened ? 'top' : 'bottom'} />
+          <VerticalArrowIcon direction={isDropdownOpened ? 'top' : 'bottom'} />
         )}
       </button>
 
       <div
         className={`${
           !isDropdownOpened && 'hidden'
-        } z-30 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl border border-slate-200 min-w-fit max-w-[90%] w-full md:w-2/3 lg:w-1/2 h-1/2 flex flex-col`}
+        } z-30 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl border border-slate-200 max-w-[90%] w-full md:w-2/3 lg:w-1/2 h-1/2 flex flex-col`}
       >
-        <ul className="px-7 pt-3 pb-2 text-sm font-normal text-gray-500 border-b text-left">
+        <ul className="overflow-auto no-scrollbar px-7 pt-3 pb-2 text-sm font-normal text-gray-500 border-b text-left">
           <li>
             <div className="flex items-center">
               <div
-                className="flex items-center w-full ml-5 rounded"
+                className="flex items-center w-full ml-5 rounded cursor-default"
                 onClick={() =>
                   setSortData({ type: 'name', asc: !sortData.asc })
                 }
               >
                 {sortData.type === 'name' && (
                   <span className="mr-2">
-                    <TopBottomIcon
+                    <VerticalArrowIcon
                       direction={sortData.asc ? 'bottom' : 'top'}
                     />
                   </span>
@@ -128,14 +153,30 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
               </div>
 
               <div
-                className="flex items-center w-full ml-2 rounded "
+                className="flex items-center w-full ml-2 rounded cursor-default"
+                onClick={() =>
+                  setSortData({ type: 'priority', asc: !sortData.asc })
+                }
+              >
+                {sortData.type === 'priority' && (
+                  <span className="mr-2">
+                    <VerticalArrowIcon
+                      direction={sortData.asc ? 'bottom' : 'top'}
+                    />
+                  </span>
+                )}
+                Prioridad
+              </div>
+
+              <div
+                className="flex items-center w-full ml-2 rounded cursor-default"
                 onClick={() =>
                   setSortData({ type: 'last', asc: !sortData.asc })
                 }
               >
                 {sortData.type === 'last' && (
                   <span className="mr-2">
-                    <TopBottomIcon
+                    <VerticalArrowIcon
                       direction={sortData.asc ? 'bottom' : 'top'}
                     />
                   </span>
@@ -144,14 +185,14 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
               </div>
 
               <div
-                className="flex items-center w-full ml-2 rounded "
+                className="flex items-center w-full ml-2 rounded cursor-default"
                 onClick={() =>
                   setSortData({ type: 'others', asc: !sortData.asc })
                 }
               >
                 {sortData.type === 'others' && (
                   <span className="mr-2">
-                    <TopBottomIcon
+                    <VerticalArrowIcon
                       direction={sortData.asc ? 'bottom' : 'top'}
                     />
                   </span>
@@ -162,7 +203,7 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
           </li>
         </ul>
 
-        <ul className="flex-grow px-3 py-2 overflow-y-auto text-sm text-gray-700 text-left">
+        <ul className="overflow-auto no-scrollbar flex-grow px-3 py-2 overflow-y-auto text-sm text-gray-700 text-left">
           {personsState.map(
             (person, key) =>
               !person.hide && (
@@ -188,11 +229,22 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
                       <div className="w-full py-2 ml-4 text-sm font-medium text-gray-900 rounded">
                         {person.name}
                       </div>
-                      <div className="w-full py-2 ml-2 text-sm text-gray-900 font-normal rounded">
-                        {showMessagePastTime(calcDays(person.last!))}
+                      <div className="w-full py-2 ml-4 text-sm font-medium text-gray-900 rounded">
+                        {person.priority === 1 ? (
+                          <span className="flex w-3 h-3 bg-blue-600 rounded-full"></span>
+                        ) : person.priority === 2 ? (
+                          <span className="flex w-3 h-3 bg-blue-400 rounded-full"></span>
+                        ) : (
+                          person.priority === 3 && (
+                            <span className="flex w-3 h-3 bg-blue-200 rounded-full"></span>
+                          )
+                        )}
                       </div>
                       <div className="w-full py-2 ml-2 text-sm text-gray-900 font-normal rounded">
-                        {showMessagePastTime(calcDays(person.others!))}
+                        {showMessagePastTime(calcDays(person.last!.date))}
+                      </div>
+                      <div className="w-full py-2 ml-2 text-sm text-gray-900 font-normal rounded">
+                        {showMessagePastTime(calcDays(person.other!.date))}
                       </div>
                     </label>
                   </div>

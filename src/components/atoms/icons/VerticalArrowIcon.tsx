@@ -1,4 +1,4 @@
-const TopBottomIcon = ({ direction = 'bottom' }) => (
+const VerticalArrowIcon = ({ direction = 'bottom' }) => (
   <svg
     className={`${direction === 'top' && 'rotate-180'} w-2.5 h-2.5 ml-2.5`}
     aria-hidden="true"
@@ -16,4 +16,4 @@ const TopBottomIcon = ({ direction = 'bottom' }) => (
   </svg>
 )
 
-export default TopBottomIcon
+export default VerticalArrowIcon

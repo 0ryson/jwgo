@@ -1,7 +1,15 @@
 export interface Person {
   id?: number
   name: string
-  last?: string
-  others?: string
-  hide?: boolean
+  last?: {
+    meetingId: string
+    participation: string
+    date: string
+  }
+  other?: {
+    meetingId: string
+    participation: string
+    date: string
+  }
+  priority: 1 | 2 | 3
 }

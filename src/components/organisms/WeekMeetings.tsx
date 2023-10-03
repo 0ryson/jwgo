@@ -81,6 +81,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                           person={
                             <SelectPerson
                               selected={meeting.firstPrayer}
+                              participation="firstPrayer"
                               callback={(person) => {
                                 weekData!.meetings[meetingKey].firstPrayer =
                                   person
@@ -97,6 +98,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                           person={
                             <SelectPerson
                               selected={meeting.chairman}
+                              participation="chairman"
                               callback={(person) => {
                                 weekData!.meetings[meetingKey].chairman = person
                                 saveData()
@@ -118,6 +120,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               person={
                                 <SelectPerson
                                   selected={meeting.treasures.treasures}
+                                  participation="treasures.treasures"
                                   callback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
@@ -135,6 +138,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               person={
                                 <SelectPerson
                                   selected={meeting.treasures.spiritualGems}
+                                  participation="treasures.spiritualGems"
                                   callback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
@@ -152,6 +156,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               person={
                                 <SelectPerson
                                   selected={meeting.treasures.bibleReading}
+                                  participation="treasures.bibleReading"
                                   callback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
@@ -177,6 +182,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               person={
                                 <SelectPerson
                                   selected={meeting.ministry.initialCallVideo}
+                                  participation="ministry.initialCallVideo"
                                   callback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
@@ -194,6 +200,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               person={
                                 <SelectPerson
                                   selected={meeting.ministry.returnVisitVideo}
+                                  participation="ministry.returnVisitVideo"
                                   callback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
@@ -211,6 +218,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               person={
                                 <SelectPerson
                                   selected={meeting.ministry.initialCall}
+                                  participation="ministry.initialCall"
                                   callback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
@@ -228,6 +236,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               person={
                                 <SelectPerson
                                   selected={meeting.ministry.returnVisit}
+                                  participation="ministry.returnVisit"
                                   callback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
@@ -245,6 +254,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               person={
                                 <SelectPerson
                                   selected={meeting.ministry.bibleStudy}
+                                  participation="ministry.bibleStudy"
                                   callback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
@@ -262,6 +272,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               person={
                                 <SelectPerson
                                   selected={meeting.ministry.talk}
+                                  participation="ministry.talk"
                                   callback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
@@ -298,6 +309,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               person={
                                 <SelectPerson
                                   selected={meeting.living.firstPart.conductor}
+                                  participation="living.firstPart.conductor"
                                   callback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
@@ -315,6 +327,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               person={
                                 <SelectPerson
                                   selected={meeting.living.secondPart.conductor}
+                                  participation="living.secondPart.conductor"
                                   callback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
@@ -337,6 +350,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                       meeting.living.congregationBibleStudy
                                         .conductor
                                     }
+                                    participation="living.congregationBibleStudy.conductor"
                                     callback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
@@ -355,6 +369,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                       meeting.living.congregationBibleStudy
                                         .reader
                                     }
+                                    participation="living.congregationBibleStudy.reader"
                                     callback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
@@ -377,6 +392,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                           person={
                             <SelectPerson
                               selected={meeting.lastPrayer}
+                              participation="lastPrayer"
                               callback={(person) => {
                                 weekData!.meetings[meetingKey].lastPrayer =
                                   person
@@ -405,6 +421,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                           person={
                             <SelectPerson
                               selected={meeting.firstPrayer}
+                              participation="firstPrayer"
                               callback={(person) => {
                                 weekData!.meetings[meetingKey].firstPrayer =
                                   person
@@ -421,6 +438,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                           person={
                             <SelectPerson
                               selected={meeting.chairman}
+                              participation="chairman"
                               callback={(person) => {
                                 weekData!.meetings[meetingKey].chairman = person
                                 saveData()
@@ -442,6 +460,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                             person={
                               <SelectPerson
                                 selected={meeting.publicTalk.speaker}
+                                participation="publicTalk.speaker"
                                 callback={(person) => {
                                   weekData!.meetings[
                                     meetingKey
@@ -482,6 +501,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                             person={
                               <SelectPerson
                                 selected={meeting.watchtowerStudy.conductor}
+                                participation="watchtowerStudy.conductor"
                                 callback={(person) => {
                                   weekData!.meetings[
                                     meetingKey
@@ -497,6 +517,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                             person={
                               <SelectPerson
                                 selected={meeting.watchtowerStudy.reader}
+                                participation="watchtowerStudy.reader"
                                 callback={(person) => {
                                   weekData!.meetings[
                                     meetingKey
@@ -517,6 +538,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                           person={
                             <SelectPerson
                               selected={meeting.lastPrayer}
+                              participation="lastPrayer"
                               callback={(person) => {
                                 weekData!.meetings[meetingKey].lastPrayer =
                                   person
