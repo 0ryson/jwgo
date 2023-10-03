@@ -1,5 +1,7 @@
 export interface Person {
   id?: number
   name: string
-  lastParticipation?: string
+  last?: string
+  others?: string
+  hide?: boolean
 }

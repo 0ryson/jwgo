@@ -4,17 +4,23 @@ const persons: Person[] = [
   {
     id: 0,
     name: 'David Merino',
-    lastParticipation: '02-08-2023',
+    last: '2023-05-01',
+    others: '2023-10-02',
+    hide: false,
   },
   {
     id: 1,
     name: 'Sergio Hazleden',
-    lastParticipation: '05-08-2023',
+    last: '2023-05-11',
+    others: '2023-08-05',
+    hide: false,
   },
   {
     id: 2,
     name: 'Gaby Mulatti',
-    lastParticipation: '28-07-2023',
+    last: '2023-07-21',
+    others: '2023-07-28',
+    hide: false,
   },
 ]
 export { persons }

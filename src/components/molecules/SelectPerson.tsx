@@ -1,7 +1,8 @@
 import type { Person } from '../../types/persons'
-import { useState, type HtmlHTMLAttributes } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { persons } from '../../../mocks/persons'
 import { Mask } from './Mask'
+import TopBottomIcon from '../atoms/icons/TopBottomIcon'
 
 interface Props {
   selected?: Person
@@ -11,10 +12,73 @@ interface Props {
 
 const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
   const [isDropdownOpened, setIsDropdownOpened] = useState(false)
-  const [personsState, setPersonsState] = useState(persons)
   const [personSelected, setPersonSelected] = useState<Person | undefined>(
     selected
   )
+
+  const [personsState, setPersonsState] = useState(persons)
+  const [sortData, setSortData] = useState({ type: 'last', asc: false })
+
+  useEffect(() => {
+    if (sortData.type === 'name') {
+      const personNames = personsState.map((person) => person.name)
+      const personNamesOrdered = sortData.asc
+        ? personNames.sort()
+        : personNames.reverse()
+
+      setPersonsState(
+        personNamesOrdered.map(
+          (name) => personsState.filter((person) => person.name === name)[0]
+        )
+      )
+    }
+
+    if (sortData.type === 'last') {
+      const personLast = personsState.map((person) => person.last!)
+      const personLastOrdered = personLast.sort(
+        (a, b) =>
+          Date.parse(sortData.asc ? b : a) - Date.parse(sortData.asc ? a : b)
+      )
+
+      setPersonsState(
+        personLastOrdered.map(
+          (date) => personsState.filter((person) => person.last === date)[0]
+        )
+      )
+    }
+
+    if (sortData.type === 'others') {
+      const personOthers = personsState.map((person) => person.others!)
+      const personOthersOrdered = personOthers.sort(
+        (a, b) =>
+          Date.parse(sortData.asc ? b : a) - Date.parse(sortData.asc ? a : b)
+      )
+
+      setPersonsState(
+        personOthersOrdered.map(
+          (date) => personsState.filter((person) => person.others === date)[0]
+        )
+      )
+    }
+  }, [sortData])
+
+  const calcDays = (date: string) =>
+    Math.floor(
+      Math.abs((new Date() as any) - Date.parse(date)) / (1000 * 60 * 60 * 24)
+    )
+
+  const showMessagePastTime = (days: number) =>
+    days < 1
+      ? `Hace unas horas`
+      : days === 1
+      ? `Hace un día`
+      : days > 1 && days < 30
+      ? `Hace ${days} días`
+      : days > 30 && days < 60
+      ? `Hace un mes`
+      : days >= 60
+      ? `Hace ${Math.floor(days / 30)} meses`
+      : ''
 
   return (
     <div className="md:w-48 min-w-fit">
@@ -35,21 +99,7 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
       >
         <span className="h-5">{personSelected && personSelected.name}</span>
         {!disabled && (
-          <svg
-            className={`${isDropdownOpened && 'rotate-180'} w-2.5 h-2.5 ml-2.5`}
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 10 6"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 1 4 4 4-4"
-            />
-          </svg>
+          <TopBottomIcon direction={isDropdownOpened ? 'top' : 'bottom'} />
         )}
       </button>
 
@@ -61,47 +111,94 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
         <ul className="px-7 pt-3 pb-2 text-sm font-normal text-gray-500 border-b text-left">
           <li>
             <div className="flex items-center">
-              <div className="w-full ml-5 rounded ">Nombre</div>
-              <div className="w-full ml-2 rounded ">Última vez asignado</div>
-              <div className="w-full ml-2 rounded ">Otras asignaciones</div>
+              <div
+                className="flex items-center w-full ml-5 rounded"
+                onClick={() =>
+                  setSortData({ type: 'name', asc: !sortData.asc })
+                }
+              >
+                {sortData.type === 'name' && (
+                  <span className="mr-2">
+                    <TopBottomIcon
+                      direction={sortData.asc ? 'bottom' : 'top'}
+                    />
+                  </span>
+                )}
+                Nombre
+              </div>
+
+              <div
+                className="flex items-center w-full ml-2 rounded "
+                onClick={() =>
+                  setSortData({ type: 'last', asc: !sortData.asc })
+                }
+              >
+                {sortData.type === 'last' && (
+                  <span className="mr-2">
+                    <TopBottomIcon
+                      direction={sortData.asc ? 'bottom' : 'top'}
+                    />
+                  </span>
+                )}
+                Asignado
+              </div>
+
+              <div
+                className="flex items-center w-full ml-2 rounded "
+                onClick={() =>
+                  setSortData({ type: 'others', asc: !sortData.asc })
+                }
+              >
+                {sortData.type === 'others' && (
+                  <span className="mr-2">
+                    <TopBottomIcon
+                      direction={sortData.asc ? 'bottom' : 'top'}
+                    />
+                  </span>
+                )}
+                Otras asignaciones
+              </div>
             </div>
           </li>
         </ul>
 
         <ul className="flex-grow px-3 py-2 overflow-y-auto text-sm text-gray-700 text-left">
-          {personsState.map((person, key) => (
-            <li key={key}>
-              <div
-                className="flex items-center pl-2 rounded hover:bg-gray-100"
-                onClick={(e) => {
-                  const ele = e.target as HTMLInputElement
-                  if (ele.localName === 'input') {
-                    setPersonSelected(
-                      ele.checked ? personsState[key] : undefined
-                    )
-                    callback(ele.checked ? personsState[key] : undefined)
-                  }
-                }}
-              >
-                <label className="flex w-full items-center">
-                  <input
-                    type="checkbox"
-                    checked={person.name === personSelected?.name}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
-                  />
-                  <div className="w-full py-2 ml-4 text-sm font-medium text-gray-900 rounded">
-                    {person.name}
+          {personsState.map(
+            (person, key) =>
+              !person.hide && (
+                <li key={key}>
+                  <div
+                    className="flex items-center pl-2 rounded hover:bg-gray-100"
+                    onClick={(e) => {
+                      const ele = e.target as HTMLInputElement
+                      if (ele.localName === 'input') {
+                        setPersonSelected(
+                          ele.checked ? personsState[key] : undefined
+                        )
+                        callback(ele.checked ? personsState[key] : undefined)
+                      }
+                    }}
+                  >
+                    <label className="flex w-full items-center">
+                      <input
+                        type="checkbox"
+                        checked={person.name === personSelected?.name}
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
+                      />
+                      <div className="w-full py-2 ml-4 text-sm font-medium text-gray-900 rounded">
+                        {person.name}
+                      </div>
+                      <div className="w-full py-2 ml-2 text-sm text-gray-900 font-normal rounded">
+                        {showMessagePastTime(calcDays(person.last!))}
+                      </div>
+                      <div className="w-full py-2 ml-2 text-sm text-gray-900 font-normal rounded">
+                        {showMessagePastTime(calcDays(person.others!))}
+                      </div>
+                    </label>
                   </div>
-                  <div className="w-full py-2 ml-2 text-sm text-gray-900 font-normal rounded">
-                    Hace 2 días
-                  </div>
-                  <div className="w-full py-2 ml-2 text-sm text-gray-900 font-normal rounded">
-                    Hace 5 días
-                  </div>
-                </label>
-              </div>
-            </li>
-          ))}
+                </li>
+              )
+          )}
         </ul>
 
         <div className="flex items-center p-3 text-sm font-medium text-red-600 border-t border-gray-200 rounded-b-lg bg-gray-50">
@@ -131,12 +228,15 @@ const SelectPerson = ({ selected, disabled = false, callback }: Props) => {
                 const value = input.target.value.toLowerCase()
 
                 setPersonsState(
-                  persons.filter((person) => {
+                  personsState.map((person) => {
                     const name = person.name.toLowerCase()
 
-                    return value.length < 3
-                      ? name.startsWith(value)
-                      : name.includes(value)
+                    const found =
+                      value.length < 3
+                        ? name.startsWith(value)
+                        : name.includes(value)
+
+                    return { ...person, hide: found ? false : true }
                   })
                 )
               }}
