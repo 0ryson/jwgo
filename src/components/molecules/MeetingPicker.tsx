@@ -65,7 +65,7 @@ export const MeetingPicker = ({ selectedDateCallback }: Props) => {
   }, [selectedDate])
 
   return (
-    <div className="flex justify-center mt-1 mb-4">
+    <div className="flex justify-center">
       <div className="w-full lg:w-min">
         <ul className="flex items-center -space-x-px h-8 text-base">
           <li>
