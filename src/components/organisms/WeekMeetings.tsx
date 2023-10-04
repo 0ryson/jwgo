@@ -38,7 +38,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
 
   return (
     <>
-      <h1 className="mb-6 text-3xl font-medium tracking-tight text-center">
+      <h1 className="mb-6 text-2xl lg:text-3xl font-medium tracking-tight text-center">
         Programa de reuniones
       </h1>
       <div className="mt-2 mb-8 lg:mb-10">
@@ -56,7 +56,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                   className="flex flex-col justify-center items-center"
                   key={meetingKey}
                 >
-                  <div className="flex items-center justify-center space-x-3 z-0 sticky top-2 py-2 w-fit p-4 bg-blue-200  rounded-lg">
+                  <div className="flex items-center justify-center space-x-3 z-0 sticky -top-3 mx-6 py-2 w-fit p-4 bg-blue-200 rounded-lg">
                     {calendarIcon}
                     <h3 className="text-lg tracking-tight text-slate-600">
                       <span className="capitalize">{meeting.day}</span>{' '}
