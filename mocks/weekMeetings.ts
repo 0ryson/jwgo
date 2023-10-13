@@ -2,8 +2,8 @@ import type { WeekMeetings } from '../src/types/weekMeetings'
 
 const weekMeetingsData: WeekMeetings = {
   id: '0001',
-  start: '2023-10-02',
-  finish: '2023-10-08',
+  start: '2023-10-09',
+  finish: '2023-10-15',
   meetings: [
     {
       id: '210923',

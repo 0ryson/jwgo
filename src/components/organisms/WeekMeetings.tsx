@@ -6,8 +6,9 @@ import type { WeekMeetings as WeekMeetingsType } from '../../types/weekMeetings.
 import { MeetingPicker } from '@components/molecules/MeetingPicker.tsx'
 import { MeetingRow } from '@components/molecules/MeetingRow.tsx'
 import CalendarIcon from '@components/atoms/icons/CalendarIcon.tsx'
-import DropdownOptions from '@components/atoms/dropdownOptions.tsx'
-import ToggleSwitch from '@components/atoms/ToggleSwitch.tsx'
+import TextField from '@components/molecules/TextField.tsx'
+/* import DropdownOptions from '@components/mole/dropdownOptions.tsx'
+import ToggleSwitch from '@components/atoms/ToggleSwitch.tsx' */
 
 interface Props {
   calendarIcon?: React.ReactElement
@@ -117,7 +118,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               <SelectPerson
                                 selected={meeting.firstPrayer}
                                 participation="firstPrayer"
-                                callback={(person) => {
+                                onClickCallback={(person) => {
                                   weekData!.meetings[meetingKey].firstPrayer =
                                     person
                                   saveData()
@@ -134,7 +135,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               <SelectPerson
                                 selected={meeting.chairman}
                                 participation="chairman"
-                                callback={(person) => {
+                                onClickCallback={(person) => {
                                   weekData!.meetings[meetingKey].chairman =
                                     person
                                   saveData()
@@ -157,7 +158,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                   <SelectPerson
                                     selected={meeting.treasures.treasures}
                                     participation="treasures.treasures"
-                                    callback={(person) => {
+                                    onClickCallback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
                                       ].treasures!.treasures = person
@@ -175,7 +176,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                   <SelectPerson
                                     selected={meeting.treasures.spiritualGems}
                                     participation="treasures.spiritualGems"
-                                    callback={(person) => {
+                                    onClickCallback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
                                       ].treasures!.spiritualGems = person
@@ -193,7 +194,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                   <SelectPerson
                                     selected={meeting.treasures.bibleReading}
                                     participation="treasures.bibleReading"
-                                    callback={(person) => {
+                                    onClickCallback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
                                       ].treasures!.bibleReading = person
@@ -219,7 +220,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                   <SelectPerson
                                     selected={meeting.ministry.initialCallVideo}
                                     participation="ministry.initialCallVideo"
-                                    callback={(person) => {
+                                    onClickCallback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
                                       ].ministry!.initialCallVideo = person
@@ -237,7 +238,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                   <SelectPerson
                                     selected={meeting.ministry.returnVisitVideo}
                                     participation="ministry.returnVisitVideo"
-                                    callback={(person) => {
+                                    onClickCallback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
                                       ].ministry!.returnVisitVideo = person
@@ -255,7 +256,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                   <SelectPerson
                                     selected={meeting.ministry.initialCall}
                                     participation="ministry.initialCall"
-                                    callback={(person) => {
+                                    onClickCallback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
                                       ].ministry!.initialCall = person
@@ -273,7 +274,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                   <SelectPerson
                                     selected={meeting.ministry.returnVisit}
                                     participation="ministry.returnVisit"
-                                    callback={(person) => {
+                                    onClickCallback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
                                       ].ministry!.returnVisit = person
@@ -291,7 +292,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                   <SelectPerson
                                     selected={meeting.ministry.bibleStudy}
                                     participation="ministry.bibleStudy"
-                                    callback={(person) => {
+                                    onClickCallback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
                                       ].ministry!.bibleStudy = person
@@ -309,7 +310,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                   <SelectPerson
                                     selected={meeting.ministry.talk}
                                     participation="ministry.talk"
-                                    callback={(person) => {
+                                    onClickCallback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
                                       ].ministry!.talk = person
@@ -348,7 +349,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                       meeting.living.firstPart.conductor
                                     }
                                     participation="living.firstPart.conductor"
-                                    callback={(person) => {
+                                    onClickCallback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
                                       ].living!.firstPart!.conductor = person
@@ -368,7 +369,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                       meeting.living.secondPart.conductor
                                     }
                                     participation="living.secondPart.conductor"
-                                    callback={(person) => {
+                                    onClickCallback={(person) => {
                                       weekData!.meetings[
                                         meetingKey
                                       ].living!.secondPart!.conductor = person
@@ -391,7 +392,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                           .conductor
                                       }
                                       participation="living.congregationBibleStudy.conductor"
-                                      callback={(person) => {
+                                      onClickCallback={(person) => {
                                         weekData!.meetings[
                                           meetingKey
                                         ].ministry!.talk = person
@@ -410,7 +411,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                           .reader
                                       }
                                       participation="living.congregationBibleStudy.reader"
-                                      callback={(person) => {
+                                      onClickCallback={(person) => {
                                         weekData!.meetings[
                                           meetingKey
                                         ].ministry!.talk = person
@@ -435,7 +436,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               <SelectPerson
                                 selected={meeting.lastPrayer}
                                 participation="lastPrayer"
-                                callback={(person) => {
+                                onClickCallback={(person) => {
                                   weekData!.meetings[meetingKey].lastPrayer =
                                     person
                                   saveData()
@@ -464,7 +465,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               <SelectPerson
                                 selected={meeting.firstPrayer}
                                 participation="firstPrayer"
-                                callback={(person) => {
+                                onClickCallback={(person) => {
                                   weekData!.meetings[meetingKey].firstPrayer =
                                     person
                                   saveData()
@@ -481,7 +482,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               <SelectPerson
                                 selected={meeting.chairman}
                                 participation="chairman"
-                                callback={(person) => {
+                                onClickCallback={(person) => {
                                   weekData!.meetings[meetingKey].chairman =
                                     person
                                   saveData()
@@ -504,7 +505,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                 <SelectPerson
                                   selected={meeting.publicTalk.speaker}
                                   participation="publicTalk.speaker"
-                                  callback={(person) => {
+                                  onClickCallback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
                                     ].publicTalk!.speaker = person
@@ -516,7 +517,18 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
 
                             <MeetingRow
                               subtitle={'Congregación'}
-                              person={meeting.publicTalk.congregation}
+                              person={
+                                <TextField
+                                  text={meeting.publicTalk.congregation}
+                                  onBlurCallback={(congregation) => {
+                                    congregation &&
+                                      (weekData!.meetings[
+                                        meetingKey
+                                      ].publicTalk!.congregation = congregation)
+                                    saveData()
+                                  }}
+                                />
+                              }
                             />
                           </div>
                         )}
@@ -545,7 +557,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                 <SelectPerson
                                   selected={meeting.watchtowerStudy.conductor}
                                   participation="watchtowerStudy.conductor"
-                                  callback={(person) => {
+                                  onClickCallback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
                                     ].watchtowerStudy!.conductor = person
@@ -561,7 +573,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                                 <SelectPerson
                                   selected={meeting.watchtowerStudy.reader}
                                   participation="watchtowerStudy.reader"
-                                  callback={(person) => {
+                                  onClickCallback={(person) => {
                                     weekData!.meetings[
                                       meetingKey
                                     ].watchtowerStudy!.reader = person
@@ -584,7 +596,7 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                               <SelectPerson
                                 selected={meeting.lastPrayer}
                                 participation="lastPrayer"
-                                callback={(person) => {
+                                onClickCallback={(person) => {
                                   weekData!.meetings[meetingKey].lastPrayer =
                                     person
                                   saveData()

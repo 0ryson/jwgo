@@ -1,4 +1,4 @@
-import type { Person } from './persons'
+import type { Person, PersonBasics } from './persons'
 
 interface Meeting {
   id: string
@@ -7,39 +7,39 @@ interface Meeting {
   date: string
   hour: string
   firstSong?: number
-  firstPrayer?: Person
-  chairman?: Person
+  firstPrayer?: PersonBasics
+  chairman?: PersonBasics
   middleSong?: number
   lastSong?: number
-  lastPrayer?: Person
+  lastPrayer?: PersonBasics
 }
 
 interface MidweekMeeting extends Meeting {
   treasures?: {
-    treasures?: Person
-    spiritualGems?: Person
-    bibleReading?: Person
+    treasures?: PersonBasics
+    spiritualGems?: PersonBasics
+    bibleReading?: PersonBasics
   }
   ministry?: {
-    initialCallVideo?: Person
-    returnVisitVideo?: Person
-    initialCall?: Person
-    returnVisit?: Person
-    bibleStudy?: Person
-    talk?: Person
+    initialCallVideo?: PersonBasics
+    returnVisitVideo?: PersonBasics
+    initialCall?: PersonBasics
+    returnVisit?: PersonBasics
+    bibleStudy?: PersonBasics
+    talk?: PersonBasics
   }
   living?: {
     firstPart?: {
       issue: string
-      conductor?: Person
+      conductor?: PersonBasics
     }
     secondPart?: {
       issue: string
-      conductor?: Person
+      conductor?: PersonBasics
     }
     congregationBibleStudy?: {
-      conductor?: Person
-      reader?: Person
+      conductor?: PersonBasics
+      reader?: PersonBasics
     }
   }
 }
@@ -47,13 +47,13 @@ interface MidweekMeeting extends Meeting {
 interface WeekendMeeting extends Meeting {
   publicTalk?: {
     issue: string
-    speaker?: Person
+    speaker?: PersonBasics
     congregation: string
   }
   watchtowerStudy?: {
     issue: string
-    conductor?: Person
-    reader?: Person
+    conductor?: PersonBasics
+    reader?: PersonBasics
   }
 }
 

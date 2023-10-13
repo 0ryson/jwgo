@@ -13,3 +13,8 @@ export interface Person {
   }
   priority: 1 | 2 | 3
 }
+
+export interface PersonBasics {
+  id?: number
+  name: string
+}

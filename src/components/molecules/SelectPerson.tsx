@@ -1,26 +1,26 @@
-import type { Person } from '../../types/persons'
+import type { Person, PersonBasics } from '../../types/persons'
 import { useState, useEffect, useMemo } from 'react'
 import { persons } from '../../../mocks/persons'
 import { Mask } from './Mask'
 import VerticalArrowIcon from '../atoms/icons/VerticalArrowIcon'
 
 interface Props {
-  selected?: Person
+  selected?: PersonBasics
   participation?: string
   disabled?: boolean
-  callback: (person: Person | undefined) => void
+  onClickCallback: (person: PersonBasics | undefined) => void
 }
 
 const SelectPerson = ({
   selected,
   participation, // Send to endpoint
   disabled = false,
-  callback,
+  onClickCallback,
 }: Props) => {
   const [isDropdownOpened, setIsDropdownOpened] = useState(false)
-  const [personSelected, setPersonSelected] = useState<Person | undefined>(
-    selected
-  )
+  const [personSelected, setPersonSelected] = useState<
+    PersonBasics | undefined
+  >(selected)
 
   const personsWithExtraValues = persons.map((person) => {
     return { ...person, hide: false }
@@ -216,7 +216,9 @@ const SelectPerson = ({
                         setPersonSelected(
                           ele.checked ? personsState[key] : undefined
                         )
-                        callback(ele.checked ? personsState[key] : undefined)
+                        onClickCallback(
+                          ele.checked ? personsState[key] : undefined
+                        )
                       }
                     }}
                   >

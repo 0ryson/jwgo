@@ -15,7 +15,7 @@ const options = {
   theme: {
     background: 'bg-slate-100 dark:bg-slate-100',
     todayBtn:
-      'bg-blue-500 dark:bg-blue-500 text-blue-50 dark:text-blue-50 hover:bg-blue-400 dark:hover:bg-blue-400 active:ring-4 active:ring-blue-300 focus:ring-0',
+      'bg-blue-200 dark:bg-blue-200 text-slate-800 dark:text-slate-800 hover:bg-blue-300 dark:hover:bg-blue-300 active:ring-4 active:ring-blue-200 focus:ring-0',
     clearBtn: '',
     icons:
       'bg-slate-100 dark:bg-slate-100 text-slate-600 dark:text-slate-600 hover:bg-slate-200 dark:hover:bg-slate-200 hover:text-slate-600 dark:hover:text-slate-600',
@@ -25,7 +25,7 @@ const options = {
     input: 'text-center',
     inputIcon: '',
     selected:
-      'bg-blue-500 dark:bg-blue-500 text-white dark:text-white hover:bg-blue-400 dark:hover:bg-blue-400  hover:text-blue-50 dark:hover:text-blue-50',
+      'bg-blue-200 dark:bg-blue-200 text-slate-800 dark:text-slate-800 hover:bg-blue-300 dark:hover:bg-blue-400  hover:text-blue-50 dark:hover:text-blue-50',
   },
   icons: {
     prev: () => <LeftIcon />,
