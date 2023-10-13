@@ -1,18 +1,10 @@
 ---
 import { WeekMeetings } from '../components/organisms/WeekMeetings.tsx'
-import CalendarIcon from '../components/atoms/icons/CalendarIcon.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Reuniones | JWGo!" description="Reuniones semanales">
   <main class="pb-6">
-    <WeekMeetings client:only transition:persist>
-      <CalendarIcon
-        slot="calendarIcon"
-        size={35}
-        strokeColor="rgb(71,85,105)"
-        strokeWidth="1"
-      />
-    </WeekMeetings>
+    <WeekMeetings client:only transition:persist />
   </main>
 </Layout>

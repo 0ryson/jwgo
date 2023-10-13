@@ -5,6 +5,9 @@ import { useMemo, useState } from 'react'
 import type { WeekMeetings as WeekMeetingsType } from '../../types/weekMeetings.ts'
 import { MeetingPicker } from '@components/molecules/MeetingPicker.tsx'
 import { MeetingRow } from '@components/molecules/MeetingRow.tsx'
+import CalendarIcon from '@components/atoms/icons/CalendarIcon.tsx'
+import DropdownOptions from '@components/atoms/dropdownOptions.tsx'
+import ToggleSwitch from '@components/atoms/ToggleSwitch.tsx'
 
 interface Props {
   calendarIcon?: React.ReactElement
@@ -57,9 +60,13 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                   key={meetingKey}
                 >
                   <div className="flex items-center justify-center space-x-3 z-0 sticky -top-3 mx-6 py-2 w-fit p-4 bg-blue-200 rounded-lg">
-                    {calendarIcon}
-                    <h3 className="text-lg tracking-tight text-slate-600">
-                      <span className="capitalize">{meeting.day}</span>{' '}
+                    <CalendarIcon
+                      size={28}
+                      strokeColor="rgb(71,85,105)"
+                      strokeWidth={1}
+                    />
+                    <h3 className="text-md text-slate-600">
+                      <span className="capitalize">{meeting.day} </span>
                       <span>
                         {new Date(meeting.date).toLocaleString('es-ES', {
                           day: 'numeric',
@@ -78,9 +85,26 @@ export const WeekMeetings = ({ calendarIcon }: Props) => {
                   >
                     {meeting.type === 'midweek' && (
                       <div className="max-w-full p-6 bg-white border-2 border-blue-200 rounded-lg">
-                        <h5 className="mb-6 text-2xl font-medium tracking-tight">
-                          {'Vida y ministerio cristiano'}
-                        </h5>
+                        <div className="flex justify-between">
+                          <h5 className="mb-6 text-2xl font-medium tracking-tight">
+                            {'Vida y ministerio cristiano'}
+                          </h5>
+
+                          {/* <DropdownOptions>
+                            <ul className="py-2 text-sm text-gray-700">
+                              <li className="px-4 py-2 hover:bg-gray-100">
+                                <div className="flex p-2 rounded hover:bg-gray-100">
+                                  <ToggleSwitch
+                                    title="Editar reunión de esta semana"
+                                    onClickCallback={() =>
+                                      console.log('onClickCallback')
+                                    }
+                                  />
+                                </div>
+                              </li>
+                            </ul>
+                          </DropdownOptions> */}
+                        </div>
 
                         {meeting.firstSong && meeting.firstPrayer && (
                           <MeetingRow

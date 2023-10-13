@@ -107,7 +107,7 @@ const SelectPerson = ({
 
   return (
     <div className="md:w-48 min-w-fit">
-      <Mask show={isDropdownOpened} showCallback={setIsDropdownOpened} />
+      <Mask show={isDropdownOpened} onClickCallback={setIsDropdownOpened} />
 
       <button
         onClick={() => !disabled && setIsDropdownOpened(!isDropdownOpened)}
@@ -116,10 +116,10 @@ const SelectPerson = ({
             ? !disabled
               ? 'bg-slate-100'
               : 'bg-white'
-            : 'bg-lime-300'
+            : 'bg-blue-300'
         } ${
           !disabled ? 'px-2' : 'cursor-default'
-        } w-full font-medium rounded-md text-sm py-1 justify-end flex items-center`}
+        } w-full font-medium rounded-md text-sm py-1 justify-end flex items-center cursor-default`}
         type="button"
       >
         <span className="h-5">{personSelected && personSelected.name}</span>
@@ -274,7 +274,7 @@ const SelectPerson = ({
             </div>
             <input
               type="text"
-              className="block w-full p-2 pl-10 text-sm text-gray-900 font-normal border border-gray-300 rounded-lg bg-white focus:outline-lime-300"
+              className="block w-full p-2 pl-10 text-sm text-gray-900 font-normal border border-gray-300 rounded-lg bg-white focus:outline-blue-300"
               placeholder="Buscar"
               onChange={(input) => {
                 const value = input.target.value.toLowerCase()

@@ -15,7 +15,7 @@ const options = {
   theme: {
     background: 'bg-slate-100 dark:bg-slate-100',
     todayBtn:
-      'bg-lime-600 dark:bg-lime-600 text-lime-50 dark:text-lime-50 hover:bg-lime-500 dark:hover:bg-lime-500 active:ring-4 active:ring-lime-300 focus:ring-0',
+      'bg-blue-500 dark:bg-blue-500 text-blue-50 dark:text-blue-50 hover:bg-blue-400 dark:hover:bg-blue-400 active:ring-4 active:ring-blue-300 focus:ring-0',
     clearBtn: '',
     icons:
       'bg-slate-100 dark:bg-slate-100 text-slate-600 dark:text-slate-600 hover:bg-slate-200 dark:hover:bg-slate-200 hover:text-slate-600 dark:hover:text-slate-600',
@@ -25,7 +25,7 @@ const options = {
     input: 'text-center',
     inputIcon: '',
     selected:
-      'bg-lime-600 dark:bg-lime-600 text-white dark:text-white hover:bg-lime-500 dark:hover:bg-lime-500  hover:text-lime-50 dark:hover:text-lime-50',
+      'bg-blue-500 dark:bg-blue-500 text-white dark:text-white hover:bg-blue-400 dark:hover:bg-blue-400  hover:text-blue-50 dark:hover:text-blue-50',
   },
   icons: {
     prev: () => <LeftIcon />,
@@ -78,7 +78,7 @@ export const MeetingPicker = ({ selectedDateCallback }: Props) => {
                 setSelectedDate(previewWeek)
                 selectedDateCallback(previewWeek)
               }}
-              className="flex items-center justify-center px-4 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-md active:ring-4 active:ring-lime-300 active:relative active:z-10"
+              className="flex items-center justify-center px-4 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-md active:ring-4 active:ring-blue-300 active:relative active:z-10"
             >
               <LeftIcon />
             </div>
@@ -91,7 +91,7 @@ export const MeetingPicker = ({ selectedDateCallback }: Props) => {
                 show={show}
                 setShow={handleClose}
               >
-                <Mask show={show} showCallback={handleClose} />
+                <Mask show={show} onClickCallback={handleClose} />
                 <input
                   type="text"
                   placeholder="Select Date"
@@ -101,7 +101,7 @@ export const MeetingPicker = ({ selectedDateCallback }: Props) => {
                   )}
                   onFocus={() => setShow(true)}
                   readOnly
-                  className="w-full lg:w-60 h-7 text-center rounded-sm outline-0"
+                  className="w-full lg:w-60 h-7 text-center rounded-sm outline-0 cursor-default"
                 />
               </Datepicker>
             </div>
@@ -114,7 +114,7 @@ export const MeetingPicker = ({ selectedDateCallback }: Props) => {
                 setSelectedDate(nextwWeek)
                 selectedDateCallback(nextwWeek)
               }}
-              className="flex items-center justify-center px-4 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-md active:ring-4 active:ring-lime-300 active:relative active:z-10"
+              className="flex items-center justify-center px-4 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-md active:ring-4 active:ring-blue-300 active:relative active:z-10"
             >
               <RightIcon />
             </div>
